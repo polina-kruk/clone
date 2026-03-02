@@ -17,6 +17,7 @@ pipeline {
                 script {
                     if (params.TEST_TYPE == 'API') {
                         sh "mvn clean test -PAPI"
+                        sh "echo "SOMETHING TO OUTPUT IN CONSOLE""
                     } else {
                         withCredentials([
                             string(credentialsId: 'VALID_LOGIN', variable: 'VALID_LOGIN'),
