@@ -18,7 +18,6 @@ pipeline {
                     if (params.TEST_TYPE == 'API') {
                         sh "mvn clean test -PAPI"
                     } else {
-                        // Важно: создай эти Credentials в Jenkins, как мы обсуждали!
                         withCredentials([
                             string(credentialsId: 'VALID_LOGIN', variable: 'VALID_LOGIN'),
                             string(credentialsId: 'PASSWORD', variable: 'PASSWORD')
@@ -27,6 +26,7 @@ pipeline {
                             echo "VALID_LOGIN=${VALID_LOGIN}" > .env
                             echo "PASSWORD=${PASSWORD}" >> .env
                             mvn clean test -PUI
+                            echo "SOMETHING TO OUTPUT IN CONSOLE"
                             """
                         }
                     }
